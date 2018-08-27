@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.osg.loki.m4s.Contracts.SubItemPageContract;
 import com.osg.loki.m4s.Dagger.App;
@@ -40,7 +41,8 @@ public class SubItemPageView extends Fragment implements SubItemPageContract.Vie
     RecyclerView list;
     @BindView(R.id.search)
     ImageView search;
-
+    @BindView(R.id.TitleText)
+    TextView mTextView;
 
 
     public SubItemPageView() {
@@ -50,6 +52,7 @@ public class SubItemPageView extends Fragment implements SubItemPageContract.Vie
     public static SubItemPageView newInstance(int current) {
         SubItemPageView fragment = new SubItemPageView();
         Bundle args = new Bundle();
+
         args.putInt(ARG_PARAM1, current);
         fragment.setArguments(args);
         return fragment;
@@ -69,6 +72,12 @@ public class SubItemPageView extends Fragment implements SubItemPageContract.Vie
         View SubItemPage=inflater.inflate(R.layout.sub_item_page,container,false);
 
         ButterKnife.bind(this,SubItemPage);
+
+        if (current==4){
+            mTextView.setText("Энциклопедия");
+        } else if (current==0){
+            mTextView.setText("Справочник");
+        }
         mLayoutManager = new LinearLayoutManager(getContext());
         list.setLayoutManager(mLayoutManager);
         list.setHasFixedSize(true);
