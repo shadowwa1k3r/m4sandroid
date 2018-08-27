@@ -6,6 +6,7 @@
                 android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="175dp"
         android:layout_alignParentTop="true"
@@ -73,12 +74,14 @@
     <LinearLayout
         android:id="@+id/mid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/signin"
-        android:layout_marginBottom="50dp"
+        android:layout_below="@+id/top"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:orientation="vertical">
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        >
 
         <EditText
             android:id="@+id/phone"
@@ -125,7 +128,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bot"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/signupbtn2"
         android:text="Войти"
         android:textColor="#FEFEFE"/>

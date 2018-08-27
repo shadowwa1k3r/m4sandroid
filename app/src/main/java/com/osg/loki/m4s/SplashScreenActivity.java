@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 
 import com.osg.loki.m4s.DataBase.ItemFullInfo;
 import com.osg.loki.m4s.DataBase.MenuItem2List;
-import com.osg.loki.m4s.DataBase.Test;
 import com.osg.loki.m4s.Model.MainPageItemType;
 import com.osg.loki.m4s.Tools.MySharedPreference;
 import com.osg.loki.m4s.Tools.State;
@@ -213,14 +212,14 @@ public class SplashScreenActivity extends AppCompatActivity {
             e.printStackTrace();
         }*/
     }
-    public void createTest(int test_id,String test_name,String test_descr,int q_id,String q_content,String a1,String a2,String a3, String a4,String a5,int a){
+    /*public void createTest(int test_id,String test_name,String test_descr,int q_id,String q_content,String a1,String a2,String a3, String a4,String a5,int a){
         Realm realm = Realm.getDefaultInstance();
         Test test = new Test(test_id,test_name,test_descr,q_id,q_content,a1,a2,a3,a4,a5,a);
         realm.beginTransaction();
         realm.copyToRealm(test);
         realm.commitTransaction();
 
-    }
+    }*/
     public void saveItem(String title,int iconpath){
 
         Realm realm = Realm.getDefaultInstance();

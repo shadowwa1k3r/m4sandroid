@@ -1,12 +1,10 @@
 package com.osg.loki.m4s.DataBase;
 
-import io.realm.RealmObject;
-
 /**
  * Created by ergas on 1/25/2018.
  */
 
-public class Test extends RealmObject{
+public class Test {
     private int test_id;
     private String test_name;
     private String test_description;

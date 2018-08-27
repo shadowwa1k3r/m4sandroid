@@ -7,7 +7,6 @@ import com.osg.loki.m4s.DataBase.MenuItem2List;
 import com.osg.loki.m4s.DataBase.MenuItem4List;
 import com.osg.loki.m4s.DataBase.MenuItem5List;
 import com.osg.loki.m4s.DataBase.MenuItem6List;
-import com.osg.loki.m4s.DataBase.Test;
 import com.osg.loki.m4s.Tools.State;
 
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public class MainPageModel {
         }
         return states;
     }
-    public ArrayList<Test> getTest(int test_id){
+    /*public ArrayList<Test> getTest(int test_id){
         ArrayList<Test> tests = new ArrayList<>();
         RealmResults<Test> results = mRealm.where(Test.class).equalTo("test_id",test_id).findAll();
         for (Test test:results) {
@@ -92,7 +91,7 @@ public class MainPageModel {
         }
 
         return tests;
-    }
+    }*/
 
     public ArrayList<ResultDataModel> getResult(String text){
         ArrayList<ResultDataModel> result=new ArrayList<>();

@@ -25,7 +25,7 @@ public class TestPagePresenter extends PresenterBase<TestPageContract.View> impl
 
     @Override
     public void loaddata(int test_id) {
-        mTests=baza.getTest(test_id);
+       // mTests=baza.getTest(test_id);
 
         cur_t=test_id;
     }
