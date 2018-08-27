@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="75dp"
+                                    android:layout_marginBottom="2dp"
+                                    android:layout_marginTop="2dp"
+                                    android:background="@android:color/white"
+                                    android:elevation="0dp"
+                                    android:padding="2dp"
+                                    app:cardBackgroundColor="@android:color/white"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="0dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        >
+
+        <ImageView
+            android:id="@+id/itemimg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+
+            android:background="@android:color/white"
+            android:padding="10dp"
+            app:srcCompat="@drawable/ic_file"/>
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/itemimg"
+            android:layout_toStartOf="@+id/enter"
+            android:textColor="#444444"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/enter"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_right_arrow"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/itemimg"
+            android:background="#ECEFF1"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

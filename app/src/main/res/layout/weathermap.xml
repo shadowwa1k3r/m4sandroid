@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:layout_marginBottom="56dp"
+    android:background="@android:color/white">
+
+
+    <org.osmdroid.views.MapView
+        android:id="@+id/weather"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/content"
+        android:layout_below="@id/Head"
+
+        android:clickable="true"/>
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <WebView
+            android:id="@+id/weatherinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </WebView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

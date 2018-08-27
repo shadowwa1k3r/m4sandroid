@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#03A9F4"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp">
+
+
+        <ImageView
+            android:id="@+id/back"
+
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_left_arrow_chevron"/>
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:text="TextView"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:visibility="gone"/>
+
+
+        <ImageButton
+            android:id="@+id/settings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_search"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+
+                    android:id="@+id/hidder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    app:el_expanded="false">
+
+                    <ImageView
+                        android:id="@+id/images"
+                        android:layout_width="250dp"
+
+                        android:layout_height="200dp"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="centerCrop"/>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+
+                <WebView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"/>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/call"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/callbtnold"
+            android:drawableStart="@drawable/ic_phone"
+            android:elevation="7dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"
+            android:text="1050"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</LinearLayout>

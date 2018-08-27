@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#eeeeee">
+
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/sign"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/signupbtn2"
+            android:text="Войти"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#616161"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_pin"
+            android:drawableTint="#616161"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Код потдверждение"
+            android:inputType="number"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"/>
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/password"
+            android:backgroundTint="#616161"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_smartphone"
+            android:drawableTint="#616161"
+            android:ems="10"
+            android:hint="Номер телефона"
+            android:inputType="phone"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"/>
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#616161"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawableTint="#616161"
+            android:ems="10"
+            android:hint="Новый пароль"
+            android:inputType="textPassword"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"/>
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#616161"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_user2"
+            android:drawableTint="#616161"
+            android:ems="10"
+            android:hint="Имя"
+            android:inputType="textPersonName"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:background="@drawable/loginback">
+
+        <ImageView
+            android:id="@+id/useradd"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_user"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="Создать профиль"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/shtor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#60000000"
+        android:visibility="gone">
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</RelativeLayout>

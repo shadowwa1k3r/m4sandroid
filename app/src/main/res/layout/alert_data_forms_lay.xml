@@ -1,0 +1,299 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f9f9f9"
+                tools:context="com.osg.loki.m4s.View.alertDataForms">
+
+    <RelativeLayout
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#03A9F4"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp">
+
+
+        <ImageView
+            android:id="@+id/Logo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:id="@+id/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:text="@string/TitleText"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <ImageButton
+            android:id="@+id/settings"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_info"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bot"
+        android:layout_below="@id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/weather"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/content"
+            android:clickable="true"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/accept"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/signupbtn2"
+            android:text="Потдвердить"
+            android:textColor="@android:color/white"
+            android:visibility="invisible"/>
+
+
+        <ImageButton
+            android:id="@+id/to_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:background="@android:color/darker_gray"
+            android:src="@drawable/ic_target"
+            android:visibility="invisible"/>
+
+
+
+        <ScrollView
+            android:id="@+id/sclay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:text="Чрезвычайный случай"
+                    android:textColor="#424242"
+                    android:textSize="18sp"/>
+
+                <LinearLayout
+                    android:id="@+id/lay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/linlayback"
+
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/FIO"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/textback"
+                        android:ems="10"
+                        android:hint="ФИО"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
+
+                    <EditText
+                        android:id="@+id/TYPE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/FIO"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="17dp"
+                        android:background="@drawable/textback"
+
+                        android:ems="10"
+                        android:hint="Заголовок"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColor="#666666"
+                        android:textSize="14sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/me"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignEnd="@+id/TYPE"
+                            android:layout_alignStart="@+id/TYPE"
+                            android:layout_below="@id/TYPE"
+
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/signupbtn2"
+                            android:drawableStart="@drawable/ic_target"
+                            android:paddingStart="10dp"
+                            android:text="Я"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:visibility="gone"/>
+
+                        <Button
+                            android:id="@+id/pick"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/signupbtn2"
+                            android:drawableStart="@drawable/ic_map_loc"
+                            android:paddingEnd="5dp"
+                            android:paddingStart="15dp"
+                            android:text="Выбрать на карте"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp">
+
+                        <TextView
+                            android:id="@+id/country"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="#424242"/>
+
+                        <TextView
+                            android:id="@+id/state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="#424242"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/ABOUT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pick"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/textback"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:hint="Допольнительная информация"
+                        android:inputType="textMultiLine"
+                        android:maxLines="3"
+                        android:minLines="5"
+                        android:textColor="#424242"
+                        android:textSize="14sp"/>
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/addmedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@id/lay"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/signupbtn2"
+                    android:drawableStart="@drawable/ic_add"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="15dp"
+                    android:text="Добавить медиафайлы"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/media"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/addmedia"
+                    android:layout_margin="10dp">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <Button
+                    android:id="@+id/send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="false"
+                    android:layout_below="@id/media"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/signupbtn2"
+                    android:drawableStart="@drawable/ic_mail"
+                    android:paddingEnd="5dp"
+                    android:paddingStart="15dp"
+                    android:text="отправит"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/progback"
+        android:layout_width="match_parent"
+        android:background="#50555555"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </RelativeLayout>
+    <ProgressBar
+
+        android:id="@+id/prog"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</RelativeLayout>
