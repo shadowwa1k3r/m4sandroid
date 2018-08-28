@@ -1,6 +1,7 @@
 package com.osg.loki.m4s.Tools;
 
 import com.osg.loki.m4s.Model.ReportAnswer;
+import com.osg.loki.m4s.Model.Wikimodel;
 import com.osg.loki.m4s.Model.alertDataModel;
 
 import java.util.List;
@@ -25,5 +26,7 @@ public interface Urls {
 @Multipart
 @POST("/api/alert/")
     Call<ReportAnswer> postReport(@Header("Authorization")String token, @Part("data") alertDataModel data, @Part List<MultipartBody.Part> image);
+@GET("/api/syncwiki/")
+    Call<List<Wikimodel>> syncwiki(@Header("Authorization")String token, @Query("dbVersion")int dbversion);
 
 }

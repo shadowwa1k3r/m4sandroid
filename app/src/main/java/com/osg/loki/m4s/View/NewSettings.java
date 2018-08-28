@@ -6,14 +6,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.osg.loki.m4s.Model.Wikimodel;
 import com.osg.loki.m4s.R;
 import com.osg.loki.m4s.SplashScreenActivity;
+import com.osg.loki.m4s.Tools.Urls;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewSettings extends Fragment {
 
@@ -24,7 +35,7 @@ public class NewSettings extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button conf,logout;
+    private Button conf,logout,upgrade;
 
 
     public NewSettings() {
@@ -55,6 +66,12 @@ public class NewSettings extends Fragment {
         View view =inflater.inflate(R.layout.fragment_new_settings, container, false);
         logout = view.findViewById(R.id.exit);
         conf = view.findViewById(R.id.conf);
+        upgrade = view.findViewById(R.id.upgrade);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.1.102:8000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final Urls service = retrofit.create(Urls.class);
 
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +93,24 @@ public class NewSettings extends Fragment {
                 startActivity(intent);
 
                 getActivity().finish();
+            }
+        });
+
+        upgrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
+                sync.enqueue(new Callback<List<Wikimodel>>() {
+                    @Override
+                    public void onResponse(Call<List<Wikimodel>> call, Response<List<Wikimodel>> response) {
+                        Log.d("sync", "onResponse: "+response.body().get(0).getContent()+" "+response.code());
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Wikimodel>> call, Throwable t) {
+                        Log.d("sync", "onResponse: "+t.getMessage());
+                    }
+                });
             }
         });
 

@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="25dp"
         android:background="@drawable/signupbtn2"
-        android:text="Следующый"
+        android:text="Следующий"
         android:textColor="@android:color/white"/>
 
     <TextView

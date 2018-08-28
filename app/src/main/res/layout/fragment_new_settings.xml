@@ -42,9 +42,15 @@
         android:text="Основные настройки"/>
 
     <Button
+        android:id="@+id/upgrade"
+        android:layout_width="match_parent"
+        android:text="Обновить"
+        android:layout_height="wrap_content"/>
+    <Button
         android:id="@+id/exit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Выйти"/>
+
 </LinearLayout>
 </RelativeLayout>
