@@ -14,7 +14,7 @@ public class SubItemFullInfoPresenter extends PresenterBase<FullInfoPageContract
 
     private MainPageModel baza = new MainPageModel(Realm.getDefaultInstance());
     private String content;
-    private int img;
+    private String img;
 
     @Override
     public void viewIsReady() {
@@ -24,7 +24,7 @@ public class SubItemFullInfoPresenter extends PresenterBase<FullInfoPageContract
     @Override
     public void loadInfo(int id) {
 
-        content=baza.getItemContent(id).getContent();
-        img = baza.getItemContent(id).getImg();
+        content=baza.getWiki(id).getContent();
+        img = baza.getWiki(id).getImage();
     }
 }

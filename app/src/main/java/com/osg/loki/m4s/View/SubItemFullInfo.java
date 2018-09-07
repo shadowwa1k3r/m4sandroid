@@ -100,9 +100,9 @@ public class SubItemFullInfo extends Fragment implements FullInfoPageContract.Vi
     }
 
     @Override
-    public void setContent(String content,int img) {
+    public void setContent(String content,String img) {
         this.title.setText(head);
-        if (img!=0) hide.expand();
+        if (!img.equals("")) hide.expand();
         this.img.setImageResource(R.drawable.chemcrash);
 
 

@@ -41,6 +41,7 @@ public class MainPageModel {
 
         return list;
     }
+
     public void setHelpList(List<Wikimodel> wikiList){
 
             mRealm.beginTransaction();
@@ -97,6 +98,14 @@ public class MainPageModel {
 
         return list;
     }
+    public Wikimodel getWiki(int id){
+        Wikimodel wiki ;
+        RealmResults<Wikimodel> itemlist = mRealm.where(Wikimodel.class).equalTo("id",id).findAll();
+        wiki = new Wikimodel(itemlist.get(0).getId(),itemlist.get(0).getTitle(),itemlist.get(0).getContent(),itemlist.get(0).getImage(),itemlist.get(0).getLast_modified());
+
+        return wiki;
+
+    }
     public ArrayList<State> getStates(){
         ArrayList<State> states = new ArrayList<>();
         RealmResults<State> results = mRealm.where(State.class).findAll();
@@ -117,9 +126,9 @@ public class MainPageModel {
 
     public ArrayList<ResultDataModel> getResult(String text){
         ArrayList<ResultDataModel> result=new ArrayList<>();
-        RealmResults<ItemFullInfo> itemList = mRealm.where(ItemFullInfo.class).contains("content",text).findAll();
-        for (ItemFullInfo item:itemList){
-            result.add(new ResultDataModel("",item.getContent(),item.getImg(),item.getId()));
+        RealmResults<Wikimodel> itemList = mRealm.where(Wikimodel.class).contains("content",text).findAll();
+        for (Wikimodel item:itemList){
+            result.add(new ResultDataModel("",item.getContent(),123,item.getId()));
         }
         return result;
     }

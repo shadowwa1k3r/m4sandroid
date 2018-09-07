@@ -9,7 +9,7 @@ import com.osg.loki.m4s.MvpView;
 
 public interface FullInfoPageContract {
     interface View extends MvpView{
-        void setContent(String content,int img);
+        void setContent(String content,String img);
 
     }
     interface Presenter extends MvpPresenter<View>{

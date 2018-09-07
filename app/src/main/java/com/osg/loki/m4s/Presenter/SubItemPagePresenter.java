@@ -1,14 +1,8 @@
 package com.osg.loki.m4s.Presenter;
 
 import com.osg.loki.m4s.Contracts.SubItemPageContract;
-import com.osg.loki.m4s.DataBase.ItemList;
-import com.osg.loki.m4s.DataBase.MenuItem1List;
-import com.osg.loki.m4s.DataBase.MenuItem2List;
-import com.osg.loki.m4s.DataBase.MenuItem4List;
-import com.osg.loki.m4s.DataBase.MenuItem5List;
-import com.osg.loki.m4s.DataBase.MenuItem6List;
-import com.osg.loki.m4s.Model.MainPageItemType;
 import com.osg.loki.m4s.Model.MainPageModel;
+import com.osg.loki.m4s.Model.Wikimodel;
 import com.osg.loki.m4s.PresenterBase;
 import com.osg.loki.m4s.SubItemPageAdapter;
 import com.osg.loki.m4s.View.SubItemPageHolderView;
@@ -23,11 +17,13 @@ import io.realm.Realm;
 
 public class SubItemPagePresenter extends PresenterBase<SubItemPageContract.View> implements SubItemPageContract.Presenter {
     private SubItemPageAdapter mAdapter;
-    private ItemList mItemList;
-    private List<MainPageItemType> mList;
+//    private ItemList mItemList;
+//    private List<MainPageItemType> mList;
+    private List<Wikimodel> mList;
     private int current;
     private String[] returnfullid = new String[2];
     private MainPageModel baza=new MainPageModel(Realm.getDefaultInstance());
+
     public SubItemPagePresenter(){
 
     }
@@ -35,11 +31,11 @@ public class SubItemPagePresenter extends PresenterBase<SubItemPageContract.View
     @Override
     public void viewIsReady(){
         getView().setAdapter(mAdapter);
-        getView().setTitle(mList.get(current).getTitle());
+        getView().setTitle("123");
     }
     @Override
     public String[]  onItemSelected(int position){
-        switch (current){
+        /*switch (current){
             case 0:
                 returnfullid[0]= String.valueOf(mItemList.menu1.get(position).getId());
                 returnfullid[1] = mItemList.menu1.get(position).getText();
@@ -61,19 +57,25 @@ public class SubItemPagePresenter extends PresenterBase<SubItemPageContract.View
                 returnfullid[1] = mItemList.menu5.get(position).getText();
                 return returnfullid;
             default:return returnfullid;
-        }
+        }*/
+        returnfullid[0] = String.valueOf(mList.get(position).getId());
+        returnfullid[1] = mList.get(position).getTitle();
+        return  returnfullid;
     }
     @Override
     public void loadItemList(int position){
-        mItemList=baza.getItemList();
+        /*mItemList=baza.getItemList();
         mList=baza.getList();
         mAdapter=new SubItemPageAdapter(this);
-        current=position;
+        current=position;*/
+        mList = baza.getHelpList();
+        mAdapter = new SubItemPageAdapter(this);
+        current = position;
 
 
     }
     public void onBindSubItemPageHolderViewAtPosition(int position, SubItemPageHolderView view){
-        switch (current){
+       /* switch (current){
             case 0:
                 MenuItem1List item = mItemList.menu1.get(position);
                 view.setIcon(item.getImg());
@@ -100,17 +102,22 @@ public class SubItemPagePresenter extends PresenterBase<SubItemPageContract.View
                 view.setText(item5.getText());
                 break;
 
-        }
+        }*/
+
+       view.setIcon(123);
+       view.setText(mList.get(position).getContent());
     }
     public int getListItemsCount(){
-        switch (current){
+        /*switch (current){
             case 0:return mItemList.menu1.size();
             case 1:return mItemList.menu2.size();
             case 3:return mItemList.menu4.size();
             case 4:return mItemList.menu5.size();
             case 5:return mItemList.menu6.size();
             default:return 0;
-        }
+        }*/
+        return  mList.size();
+
     }
 
 }
