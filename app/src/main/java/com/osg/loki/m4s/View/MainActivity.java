@@ -18,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.instabug.library.Instabug;
+import com.instabug.library.invocation.InstabugInvocationEvent;
 import com.osg.loki.m4s.Contracts.MainPageContract;
 import com.osg.loki.m4s.Dagger.App;
 import com.osg.loki.m4s.MainPageItemAdapter;
@@ -62,6 +64,11 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
         ActivityCompat.requestPermissions(this,permission,PERMISSON_CODE);
 
         ButterKnife.bind(this);
+
+        new Instabug.Builder(getApplication(), "835620b5a1bdefd7a2ff0c889c570b52")
+                .setInvocationEvents(InstabugInvocationEvent.FLOATING_BUTTON, InstabugInvocationEvent.SCREENSHOT)
+                .build();
+
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -145,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
             }
                 break;
             case "item2": fragment = new LicenseRequest();break;
-            case "item3": fragment= AlertView.newInstance(token);ImageViewAnimatedChange(getApplication(),logo, R.drawable.logo);break;
+            case "item3": fragment= AlertView.newInstance(token);/*ImageViewAnimatedChange(getApplication(),logo, R.drawable.logo);*/break;
             case "item4": fragment= SubItemPageView.newInstance(4);break;
             case "item5": fragment= new NewSettings();break;
         }

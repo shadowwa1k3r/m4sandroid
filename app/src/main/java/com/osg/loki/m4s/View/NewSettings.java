@@ -13,16 +13,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.osg.loki.m4s.Model.MainPageModel;
 import com.osg.loki.m4s.Model.Wikimodel;
 import com.osg.loki.m4s.R;
 import com.osg.loki.m4s.SplashScreenActivity;
 import com.osg.loki.m4s.Tools.Urls;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.realm.Realm;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -36,6 +36,7 @@ public class NewSettings extends Fragment {
     private String mParam2;
 
     private Button conf,logout,upgrade;
+    private MainPageModel baza;
 
 
     public NewSettings() {
@@ -99,7 +100,8 @@ public class NewSettings extends Fragment {
         upgrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
+
+                /*final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
                 sync.enqueue(new Callback<List<Wikimodel>>() {
                     @Override
                     public void onResponse(Call<List<Wikimodel>> call, Response<List<Wikimodel>> response) {
@@ -110,11 +112,21 @@ public class NewSettings extends Fragment {
                     public void onFailure(Call<List<Wikimodel>> call, Throwable t) {
                         Log.d("sync", "onResponse: "+t.getMessage());
                     }
-                });
+                });*/
+                List<Wikimodel> list = new ArrayList<>();
+                list.add(new Wikimodel(1,"title1","1kontent","1image","bir salat"));
+                list.add(new Wikimodel(2,"title2","2kontent","2image","2bir salat"));
+
+                baza = new MainPageModel(Realm.getDefaultInstance());
+                baza.setHelpList(list);
+                Log.e("checkupdateddb", "onClick: "+baza.getHelpList().get(0).getContent()+" size="+baza.getHelpList().size() );
+
+
             }
         });
 
         return view;
     }
+
 
 }

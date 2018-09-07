@@ -99,6 +99,7 @@ public class auth2 extends Fragment {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("http://app.fvv.uz/")
+                //.baseUrl("http://192.168.1.102:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = mRetrofit.create(Auth.class);

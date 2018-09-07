@@ -273,7 +273,7 @@
                     android:drawableStart="@drawable/ic_mail"
                     android:paddingEnd="5dp"
                     android:paddingStart="15dp"
-                    android:text="отправит"
+                    android:text="отправить"
                     android:textColor="@android:color/white"/>
             </RelativeLayout>
         </ScrollView>

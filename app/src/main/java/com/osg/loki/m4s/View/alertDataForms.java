@@ -257,7 +257,8 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mRetrofit2 = new Retrofit.Builder()
-                .baseUrl("http://app.fvv.uz")
+                //.baseUrl("http://192.168.1.100:8000/")
+                .baseUrl("http://app.fvv.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -335,6 +336,9 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                                 parts.add(MultipartBody.Part.createFormData("file", file.getName(), body));
 
                                 fileList.add(list.get(i).getOriginalPath());
+                                Log.i("list_changed", "onFilesChosen: "+fileList.size());
+
+
                                 //include.setText(list.get(i).getOriginalPath());
                                 Log.e("FilePick", "onFilesChosen: hahaha" );
 
@@ -448,9 +452,6 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                                 me_cnt++;
                                 GeoPoint geoPoint = new GeoPoint(location.getLongitude(), location.getAltitude());
                                 // mapController.setCenter(geoPoint);
-
-
-
                             }
 
                         }
@@ -497,9 +498,6 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                     });
 
                     //data.setLocation(location.getLongitude(),location.getAltitude());
-
-
-
                 }
             }
         });
@@ -533,7 +531,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                                         .setMessage("Ошибка соеденение с сервером, попробуйте еще раз ").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
-                                                getActivity().getSupportFragmentManager().popBackStack(); // monitorizni o'chiraymi. o'chirib uyga ketdim
+                                                getActivity().getSupportFragmentManager().popBackStack();
                                             }
                                         }).show();
                                 alertDialog.show();
@@ -547,7 +545,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                                     .setMessage("Ошибка соеденение с сервером, попробуйте еще раз ").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-                                            getActivity().getSupportFragmentManager().popBackStack(); // monitorizni o'chiraymi. o'chirib uyga ketdim
+                                            getActivity().getSupportFragmentManager().popBackStack();
                                         }
                                     }).show();
                             alertDialog.show();
@@ -628,18 +626,12 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                         Toast.makeText(getContext(),"Not available",Toast.LENGTH_SHORT).show();
                     }
                     //data.setLocation(location.getLongitude(),location.getAltitude());
-
-
-
                 }
-
 
                // getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer,new MapView()).addToBackStack(null).commit();
                 mapView.setVisibility(View.VISIBLE);
                 InputMethodManager imm=(InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (view.getWindowToken() != null) {
-                    
-
 
                 imm.hideSoftInputFromWindow(view.getWindowToken(),0);}
                 //mapView.setBuiltInZoomControls(true);
@@ -651,9 +643,6 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                 send.setVisibility(View.INVISIBLE);
                 sclay.setVisibility(View.INVISIBLE);
                 to_me.setVisibility(View.VISIBLE);
-
-
-
             }
         });
 
@@ -675,23 +664,8 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                 send.setVisibility(View.VISIBLE);
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
         return adfl;
     }
-
-
-
     public static String getPath(final Context context, final Uri uri) {
 
 
@@ -753,16 +727,6 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
         return null;
     }
 
-    /**
-     * Get the value of the data column for this Uri. This is useful for
-     * MediaStore Uris, and other file-based ContentProviders.
-     *
-     * @param context The context.
-     * @param uri The Uri to query.
-     * @param selection (Optional) Filter used in the query.
-     * @param selectionArgs (Optional) Selection arguments used in the query.
-     * @return The value of the _data column, which is typically a file path.
-     */
     public static String getDataColumn(Context context, Uri uri, String selection,
                                        String[] selectionArgs) {
 

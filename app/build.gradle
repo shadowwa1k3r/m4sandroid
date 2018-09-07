@@ -61,5 +61,7 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.kbeanie:multipicker:1.5@aar'
 
+    implementation 'com.instabug.library:instabug:8.0.6'
+
 
 }

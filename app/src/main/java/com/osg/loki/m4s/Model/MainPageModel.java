@@ -30,6 +30,28 @@ public class MainPageModel {
             mRealm = realm;
 
     }
+
+    public List<Wikimodel> getHelpList(){
+        List<Wikimodel> list = new ArrayList<>();
+        RealmResults<Wikimodel> itemlist = mRealm.where(Wikimodel.class).findAll();
+
+        for (Wikimodel model:itemlist){
+            list.add(new Wikimodel(model.getId(),model.getTitle(),model.getContent(),model.getImage(),model.getLast_modified()));
+        }
+
+        return list;
+    }
+    public void setHelpList(List<Wikimodel> wikiList){
+
+            mRealm.beginTransaction();
+            mRealm.delete(Wikimodel.class);
+            mRealm.copyToRealm(wikiList);
+            mRealm.commitTransaction();
+
+
+    }
+
+
     public List<MainPageItemType> getList(){
         List<MainPageItemType> list=new ArrayList<>();
         RealmResults<MainPageItemType> itemList = mRealm.where(MainPageItemType.class).findAll();

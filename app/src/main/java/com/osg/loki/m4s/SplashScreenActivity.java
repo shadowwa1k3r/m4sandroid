@@ -175,7 +175,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         try {
-            RealmConfiguration configuration = new RealmConfiguration.Builder()
+            /*RealmConfiguration configuration = new RealmConfiguration.Builder()
                     .assetFile("data4.realm")
                     .name("data4.realm")
                     .schemaVersion(80)
@@ -183,8 +183,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                     //.deleteRealmIfMigrationNeeded()
 
                     //.deleteRealmIfMigrationNeeded()
+                    .build();*/
+            RealmConfiguration config = new RealmConfiguration.Builder()
+                    .name("newdb.realm")
                     .build();
-            Realm.setDefaultConfiguration(configuration);
+            Realm.setDefaultConfiguration(config);
         }
         catch (Exception e){
             e.printStackTrace();
