@@ -258,7 +258,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                 .build();
         mRetrofit2 = new Retrofit.Builder()
                 //.baseUrl("http://192.168.1.100:8000/")
-                .baseUrl("http://app.fvv.uz/")
+                .baseUrl("https://app.fvv.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

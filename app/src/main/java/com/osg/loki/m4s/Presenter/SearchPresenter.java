@@ -50,7 +50,7 @@ public class SearchPresenter extends PresenterBase<SearchContract.View> implemen
     public void onBindSubItemPageHolderViewAtPosition(int position, SearchHolderView view) {
         view.setHeader(String.valueOf(resultList.get(position).getId()));
         view.setFooter(resultList.get(position).getFooter());
-        view.setIcon(resultList.get(position).getIcon());
+//        view.setIcon(resultList.get(position).getIcon());
     }
     public int getListItemsCount(){
         return resultList.size();

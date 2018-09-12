@@ -22,4 +22,11 @@ public interface Auth {
     Call<ResponseBody> signup(@Body UserRegisterModel user);
     @GET("/api/confirm/")
     Call<Token> confirm(@Query("username") String username,@Query("confirm_code")String confirm_code);
+
+    @GET("/api/password-recover/")
+    Call<Void> checkPhone(@Query("phone")String phone);
+    @GET("/api/password-recover/")
+    Call<Void> confirmPhone(@Query("phone")String phone,@Query("code")String confirm_code);
+    @GET("/api/password-recover/")
+    Call<Void> newPasswd(@Query("phone")String phone,@Query("password")String password);
 }

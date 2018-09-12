@@ -2,6 +2,7 @@ package com.osg.loki.m4s.View;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -9,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -23,15 +25,26 @@ import com.instabug.library.invocation.InstabugInvocationEvent;
 import com.osg.loki.m4s.Contracts.MainPageContract;
 import com.osg.loki.m4s.Dagger.App;
 import com.osg.loki.m4s.MainPageItemAdapter;
+import com.osg.loki.m4s.Model.MainPageModel;
+import com.osg.loki.m4s.Model.Wikimodel;
 import com.osg.loki.m4s.Presenter.MainPagePresenter;
 import com.osg.loki.m4s.R;
+import com.osg.loki.m4s.Tools.Urls;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements MainPageContract.View{
 
@@ -48,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
     FrameLayout container;
     @BindView(R.id.Logo)
     ImageView logo;
-
+    private MainPageModel baza;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +85,48 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                //.baseUrl("http://192.168.1.102:8000/")
+                .baseUrl("https://app.fvv.uz/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        final Urls service = retrofit.create(Urls.class); final String PREFS_NAME = "MyPrefsFile";
+        final String PREF_TOKEN = "token";
+        final String DOESNT_EXIST = "-1";
+        final SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
+
+        final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
+        sync.enqueue(new Callback<List<Wikimodel>>() {
+            @Override
+            public void onResponse(Call<List<Wikimodel>> call, Response<List<Wikimodel>> response) {
+                Log.d("sync", "onResponse: "+response.code());
+                if (response.code()==200) {
+                    Log.d("sync", "onResponse: "+response.body().size());
+                    baza = new MainPageModel(Realm.getDefaultInstance());
+                    baza.setHelpList(response.body());
+                    Toast.makeText(getApplicationContext(),"Обновление базы данных справочника успешно выполнено",Toast.LENGTH_LONG).show();
+                    Log.e("checkupdateddb", "onClick: " + baza.getHelpList().get(0).getContent() + " size=" + baza.getHelpList().size());
+                }
+                else if (response.code()==304){
+                    Toast.makeText(getApplicationContext(),"Обновление не требуется",Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"Ошибка сервера при обновлении базы данных справочника",Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Wikimodel>> call, Throwable t) {
+                Log.d("sync", "onResponse: "+t.getMessage());
+                Toast.makeText(getApplicationContext(),"Ошибка сети при обновлении базы данных справочника",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
         //home.setTypeface(Typeface.DEFAULT_BOLD);
 
@@ -153,7 +208,8 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
                 break;
             case "item2": fragment = new LicenseRequest();break;
             case "item3": fragment= AlertView.newInstance(token);/*ImageViewAnimatedChange(getApplication(),logo, R.drawable.logo);*/break;
-            case "item4": fragment= SubItemPageView.newInstance(4);break;
+//            case "item4": fragment= SubItemPageView.newInstance(4);break;
+            case "item4": fragment = new LicenseRequest();break;
             case "item5": fragment= new NewSettings();break;
         }
 

@@ -10,6 +10,7 @@
         android:layout_height="56dp"
         android:background="#03A9F4"
         android:paddingEnd="16dp"
+        android:layout_marginBottom="5dp"
         android:paddingStart="16dp">
 
 
@@ -23,6 +24,7 @@
             android:text="НАСТРОЙКИ"
             android:textColor="@android:color/white"
             android:textSize="14sp"
+
             android:textStyle="bold"/>
 
 
@@ -39,15 +41,24 @@
         android:id="@+id/conf"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:textColor="@android:color/white"
+        android:layout_margin="5dp"
         android:text="Основные настройки"/>
 
     <Button
         android:id="@+id/upgrade"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
-        android:text="Обновить"
+        android:text="Обновить БД справочника"
+        android:layout_margin="5dp"
+        android:background="#2196F3"
         android:layout_height="wrap_content"/>
     <Button
+        android:textColor="@android:color/white"
         android:id="@+id/exit"
+        android:layout_margin="5dp"
+        android:background="#2196F3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Выйти"/>

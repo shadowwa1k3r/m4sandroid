@@ -9,6 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
+        app:srcCompat="@drawable/ic_file"
         android:background="@android:color/white"
         android:padding="10dp"/>
 

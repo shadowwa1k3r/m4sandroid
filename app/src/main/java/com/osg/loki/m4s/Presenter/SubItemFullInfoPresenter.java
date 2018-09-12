@@ -1,5 +1,7 @@
 package com.osg.loki.m4s.Presenter;
 
+import android.util.Log;
+
 import com.osg.loki.m4s.Contracts.FullInfoPageContract;
 import com.osg.loki.m4s.Model.MainPageModel;
 import com.osg.loki.m4s.PresenterBase;
@@ -26,5 +28,6 @@ public class SubItemFullInfoPresenter extends PresenterBase<FullInfoPageContract
 
         content=baza.getWiki(id).getContent();
         img = baza.getWiki(id).getImage();
+        Log.e("prez", "loadInfo: "+baza.getWiki(id).getImage() );
     }
 }

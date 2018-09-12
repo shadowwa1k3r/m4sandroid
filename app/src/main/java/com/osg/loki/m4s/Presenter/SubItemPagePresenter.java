@@ -105,7 +105,7 @@ public class SubItemPagePresenter extends PresenterBase<SubItemPageContract.View
         }*/
 
        view.setIcon(123);
-       view.setText(mList.get(position).getContent());
+       view.setText(mList.get(position).getTitle());
     }
     public int getListItemsCount(){
         /*switch (current){

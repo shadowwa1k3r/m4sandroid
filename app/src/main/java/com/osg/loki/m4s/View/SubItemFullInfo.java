@@ -3,6 +3,7 @@ package com.osg.loki.m4s.View;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.osg.loki.m4s.Contracts.FullInfoPageContract;
 import com.osg.loki.m4s.Dagger.App;
 import com.osg.loki.m4s.Presenter.SubItemFullInfoPresenter;
 import com.osg.loki.m4s.R;
+import com.squareup.picasso.Picasso;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
@@ -82,13 +84,7 @@ public class SubItemFullInfo extends Fragment implements FullInfoPageContract.Vi
         mPresenter.attachView(this);
         mPresenter.loadInfo(id);
         mPresenter.viewIsReady();
-
-
-
-
         content.getSettings().setJavaScriptEnabled(true);
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,9 +98,11 @@ public class SubItemFullInfo extends Fragment implements FullInfoPageContract.Vi
     @Override
     public void setContent(String content,String img) {
         this.title.setText(head);
-        if (!img.equals("")) hide.expand();
-        this.img.setImageResource(R.drawable.chemcrash);
-
+        if (img!=null) hide.expand();
+//        this.img.setImageResource(R.drawable.chemcrash);
+        Log.e("img", "setContent: "+img );
+//        Glide.with(getContext()).load(img).apply(new RequestOptions().centerCrop()).into(this.img);
+        Picasso.get().load(img).fit().into(this.img);
 
 
         this.content.loadDataWithBaseURL(null,content,"text/html","utf-8",null);

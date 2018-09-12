@@ -1,7 +1,9 @@
 package com.osg.loki.m4s.View;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,10 +21,12 @@ import com.osg.loki.m4s.R;
 import com.osg.loki.m4s.SplashScreenActivity;
 import com.osg.loki.m4s.Tools.Urls;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -69,7 +73,8 @@ public class NewSettings extends Fragment {
         conf = view.findViewById(R.id.conf);
         upgrade = view.findViewById(R.id.upgrade);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.102:8000/")
+                //.baseUrl("http://192.168.1.102:8000/")
+                .baseUrl("https://app.fvv.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         final Urls service = retrofit.create(Urls.class);
@@ -101,25 +106,51 @@ public class NewSettings extends Fragment {
             @Override
             public void onClick(View view) {
 
-                /*final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
+                final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
                 sync.enqueue(new Callback<List<Wikimodel>>() {
                     @Override
                     public void onResponse(Call<List<Wikimodel>> call, Response<List<Wikimodel>> response) {
-                        Log.d("sync", "onResponse: "+response.body().get(0).getContent()+" "+response.code());
+                        Log.d("sync", "onResponse: "+" "+response.code());
+                        if (response.code()==200) {
+
+                            baza = new MainPageModel(Realm.getDefaultInstance());
+                            baza.setHelpList(response.body());
+                            Log.d("sync", "onResponse: "+" "+response.body().size());
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
+                                    .setMessage("Обновление прошло успешно").setPositiveButton("OK", null).show();
+                            alertDialog.show();
+                            Log.e("checkupdateddb", "onClick: " + baza.getHelpList().get(0).getContent()+" "+response.body().get(0).getImage() + " size=" + baza.getHelpList().size());
+                        }
+                        else if (response.code()==304){
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
+                                    .setMessage("Обновление не требуется").setPositiveButton("OK", null).show();
+                            alertDialog.show();
+                        } else {
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
+                                    .setMessage("Ошибка сервера!").setPositiveButton("OK",null).show();
+                            alertDialog.show();
+                        }
+
                     }
 
                     @Override
                     public void onFailure(Call<List<Wikimodel>> call, Throwable t) {
                         Log.d("sync", "onResponse: "+t.getMessage());
+                        AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
+                                .setMessage("Ошибка сети!").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                }).show();
+                        alertDialog.show();
                     }
-                });*/
-                List<Wikimodel> list = new ArrayList<>();
+                });
+                /*List<Wikimodel> list = new ArrayList<>();
                 list.add(new Wikimodel(1,"title1","1kontent","1image","bir salat"));
                 list.add(new Wikimodel(2,"title2","2kontent","2image","2bir salat"));
+*/
 
-                baza = new MainPageModel(Realm.getDefaultInstance());
-                baza.setHelpList(list);
-                Log.e("checkupdateddb", "onClick: "+baza.getHelpList().get(0).getContent()+" size="+baza.getHelpList().size() );
 
 
             }

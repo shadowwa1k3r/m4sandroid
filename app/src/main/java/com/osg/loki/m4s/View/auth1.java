@@ -44,6 +44,8 @@ public class auth1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    @BindView(R.id.forgot)
+    TextView forgot;
     @BindView(R.id.signup)
     TextView signup;
     @BindView(R.id.signin)
@@ -106,11 +108,20 @@ public class auth1 extends Fragment {
 
 
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://app.fvv.uz/")
+                .baseUrl("https://app.fvv.uz/")
                 //.baseUrl("http://192.168.1.100:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = mRetrofit.create(Auth.class);
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),RecoveryStep.class);
+                startActivity(intent);
+//                getActivity().finish();
+            }
+        });
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
