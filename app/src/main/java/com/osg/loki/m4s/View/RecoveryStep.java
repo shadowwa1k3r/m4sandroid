@@ -1,11 +1,13 @@
 package com.osg.loki.m4s.View;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.osg.loki.m4s.R;
@@ -27,6 +29,10 @@ public class RecoveryStep extends AppCompatActivity {
     EditText phone;
     @BindView(R.id.sign)
     Button confirm;
+    @BindView(R.id.timer)
+    TextView timer;
+    @BindView(R.id.retry)
+    TextView retry;
 
     private Retrofit mRetrofit;
     private Auth service;
@@ -43,7 +49,26 @@ public class RecoveryStep extends AppCompatActivity {
                 .build();
 
         service = mRetrofit.create(Auth.class);
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirm.setEnabled(true);
+                retry.setVisibility(View.INVISIBLE);
+                new CountDownTimer(120000,1000){
+                    @Override
+                    public void onTick(long l) {
+                        timer.setVisibility(View.VISIBLE);
+                        timer.setText((l/60000)+":"+((l%60000)/1000));
+                    }
 
+                    @Override
+                    public void onFinish() {
+                        retry.setVisibility(View.VISIBLE);
+                        confirm.setEnabled(false);
+                    }
+                }.start();
+            }
+        });
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +82,20 @@ public class RecoveryStep extends AppCompatActivity {
                             if (response.code()==200){
                                 confirm_code.setVisibility(View.VISIBLE);
 //                                Toast.makeText(getApplicationContext(),confirm_code.getVisibility(),Toast.LENGTH_LONG).show();
+
+                                new CountDownTimer(120000,1000){
+                                    @Override
+                                    public void onTick(long l) {
+                                        timer.setVisibility(View.VISIBLE);
+                                        timer.setText((l/60000)+":"+((l%60000)/1000));
+                                    }
+
+                                    @Override
+                                    public void onFinish() {
+                                        retry.setVisibility(View.VISIBLE);
+                                        confirm.setEnabled(false);
+                                    }
+                                }.start();
 
                                /* phone.setFocusable(false);
                                 phone.setEnabled(false);

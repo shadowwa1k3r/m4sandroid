@@ -144,9 +144,8 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
             "bmp",
             "png",
             "gif",
-            "tiff",
-            "webp",
-            "ico"
+
+
     };
 
     static String[] VIDEO_EXTENSIONS = {
@@ -154,7 +153,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
             "asf",
             "mov",
             "flv",
-            "swf",
+
             "mpg",
             "mpeg",
             "mp4",
@@ -257,7 +256,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mRetrofit2 = new Retrofit.Builder()
-                //.baseUrl("http://192.168.1.100:8000/")
+//                .baseUrl("http://192.168.1.107:8000/")
                 .baseUrl("https://app.fvv.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -506,6 +505,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
             @Override
             public void onClick(View view) {
                 if (data.getAltitude()!=0) {
+                    prog.setVisibility(View.VISIBLE);
                     data.setName(fio.getText().toString());
                     data.setType(type.getText().toString());
                     data.setAbout(about.getText().toString());
@@ -518,6 +518,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                         public void onResponse(Call<ReportAnswer> call, Response<ReportAnswer> response) {
                             Log.i("data", "onResponse: " + response.code());
                             if (response.code() == 200) {
+                                prog.setVisibility(View.INVISIBLE);
                                 AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Отрпавка информации")
                                         .setMessage("Ваш запрос был принят.").setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                                             @Override
@@ -527,6 +528,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                                         }).show();
                                 alertDialog.show();
                             } else {
+                                prog.setVisibility(View.INVISIBLE);
                                 AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Отправка информации")
                                         .setMessage("Ошибка соеденение с сервером, попробуйте еще раз ").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
@@ -540,7 +542,11 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
 
                         @Override
                         public void onFailure(Call<ReportAnswer> call, Throwable t) {
+                            prog.setVisibility(View.INVISIBLE);
                             Log.e("data", "onFailure: " + t.getMessage() + " " + token);
+                            for (int i = 0; i <t.getStackTrace().length ; i++) {
+                                Log.e("data", "onFailure: " + t.getStackTrace()[i]);
+                            }
                             AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Отправка информации")
                                     .setMessage("Ошибка соеденение с сервером, попробуйте еще раз ").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         @Override

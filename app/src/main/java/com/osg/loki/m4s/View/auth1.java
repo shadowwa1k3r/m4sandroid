@@ -109,7 +109,7 @@ public class auth1 extends Fragment {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("https://app.fvv.uz/")
-                //.baseUrl("http://192.168.1.100:8000/")
+//                .baseUrl("http://192.168.1.107:8000/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = mRetrofit.create(Auth.class);
@@ -152,7 +152,7 @@ public class auth1 extends Fragment {
                             shtor.setVisibility(View.GONE);
                             loading.setVisibility(View.GONE);
                             Log.i("token", "onResponse: "+response.message()+" "+response.code());
-                            Toast.makeText(getContext(),"Проблема при авторизации",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"Ошибка, неправильные данные!",Toast.LENGTH_LONG).show();
                         }
                     }
 
