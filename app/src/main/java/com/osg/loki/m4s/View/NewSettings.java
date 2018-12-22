@@ -1,6 +1,7 @@
 package com.osg.loki.m4s.View;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,12 +35,13 @@ public class NewSettings extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    android.support.v7.app.AlertDialog mAlertDialog;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public static Activity fa;
 
-    private Button conf,logout,upgrade;
+    private Button conf,logout,upgrade,lang;
     private MainPageModel baza;
 
 
@@ -59,6 +61,7 @@ public class NewSettings extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fa = this.getActivity();
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -72,6 +75,7 @@ public class NewSettings extends Fragment {
         logout = view.findViewById(R.id.exit);
         conf = view.findViewById(R.id.conf);
         upgrade = view.findViewById(R.id.upgrade);
+        lang = view.findViewById(R.id.lang);
         Retrofit retrofit = new Retrofit.Builder()
                 //.baseUrl("http://192.168.1.102:8000/")
                 .baseUrl("https://app.fvv.uz/")
@@ -82,7 +86,7 @@ public class NewSettings extends Fragment {
         conf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"в разработке",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),R.string.developing,Toast.LENGTH_LONG).show();
             }
         });
         final String PREFS_NAME = "MyPrefsFile";
@@ -101,6 +105,12 @@ public class NewSettings extends Fragment {
                 getActivity().finish();
             }
         });
+        lang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(),LanguageSettingsActivity.class));
+            }
+        });
 
         upgrade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,18 +126,18 @@ public class NewSettings extends Fragment {
                             baza = new MainPageModel(Realm.getDefaultInstance());
                             baza.setHelpList(response.body());
                             Log.d("sync", "onResponse: "+" "+response.body().size());
-                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
-                                    .setMessage("Обновление прошло успешно").setPositiveButton("OK", null).show();
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.updating_db)
+                                    .setMessage(R.string.db_updated).setPositiveButton("OK", null).show();
                             alertDialog.show();
-                            Log.e("checkupdateddb", "onClick: " + baza.getHelpList().get(0).getContent()+" "+response.body().get(0).getImage() + " size=" + baza.getHelpList().size());
+                          Log.e("checkupdateddb", "onClick: " + baza.getHelpList("uz","ЧС: Как действовать?").get(0).getContent()+" "+response.body().get(0).getImage() + " size=" + baza.getHelpList("uz","ЧС: Как действовать?").size());
                         }
                         else if (response.code()==304){
-                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
-                                    .setMessage("Обновление не требуется").setPositiveButton("OK", null).show();
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.updating_db)
+                                    .setMessage(R.string.update_not_required).setPositiveButton("OK", null).show();
                             alertDialog.show();
                         } else {
-                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
-                                    .setMessage("Ошибка сервера!").setPositiveButton("OK",null).show();
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.updating_db)
+                                    .setMessage(R.string.server_error_update).setPositiveButton("OK",null).show();
                             alertDialog.show();
                         }
 
@@ -136,8 +146,8 @@ public class NewSettings extends Fragment {
                     @Override
                     public void onFailure(Call<List<Wikimodel>> call, Throwable t) {
                         Log.d("sync", "onResponse: "+t.getMessage());
-                        AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Обновление базы данных справочника")
-                                .setMessage("Ошибка сети!").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.updating_db)
+                                .setMessage(R.string.network_error).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
 

@@ -36,7 +36,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawableTint="#616161"
             android:ems="10"
-            android:hint="Повторите пароль"
+            android:hint="@string/repeat_pwd"
             android:inputType="textPassword"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"/>
@@ -52,7 +52,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawableTint="#616161"
             android:ems="10"
-            android:hint="Новый пароль"
+            android:hint="@string/new_pwd"
             android:inputType="textPassword"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"/>
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:text="Новый пароль"
+            android:text="@string/new_pwd_title"
             android:textColor="@android:color/white"
             android:textSize="16sp"/>
     </RelativeLayout>

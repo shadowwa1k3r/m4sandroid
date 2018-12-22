@@ -256,7 +256,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         mRetrofit2 = new Retrofit.Builder()
-//                .baseUrl("http://192.168.1.107:8000/")
+//                .baseUrl("http://192.168.1.112:8888/")
                 .baseUrl("https://app.fvv.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -519,8 +519,8 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                             Log.i("data", "onResponse: " + response.code());
                             if (response.code() == 200) {
                                 prog.setVisibility(View.INVISIBLE);
-                                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Отрпавка информации")
-                                        .setMessage("Ваш запрос был принят.").setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.message_sent_title)
+                                        .setMessage(R.string.message_confirm).setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 getActivity().getSupportFragmentManager().popBackStack();
@@ -529,8 +529,8 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                                 alertDialog.show();
                             } else {
                                 prog.setVisibility(View.INVISIBLE);
-                                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Отправка информации")
-                                        .setMessage("Ошибка соеденение с сервером, попробуйте еще раз ").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.message_sent_title)
+                                        .setMessage(R.string.message_error).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
                                                 getActivity().getSupportFragmentManager().popBackStack();
@@ -547,8 +547,8 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                             for (int i = 0; i <t.getStackTrace().length ; i++) {
                                 Log.e("data", "onFailure: " + t.getStackTrace()[i]);
                             }
-                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle("Отправка информации")
-                                    .setMessage("Ошибка соеденение с сервером, попробуйте еще раз ").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.message_sent_title)
+                                    .setMessage(R.string.message_error).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             getActivity().getSupportFragmentManager().popBackStack();
@@ -559,7 +559,7 @@ public class alertDataForms extends Fragment implements MapEventsReceiver {
                     });
                 }
                 else {
-                    Toast.makeText(getContext(),"Выберите на карте место происществии",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),R.string.message_pick_loc,Toast.LENGTH_LONG).show();
                 }
             }
         });

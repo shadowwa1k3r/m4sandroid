@@ -1,8 +1,10 @@
 package com.osg.loki.m4s.View;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.osg.loki.m4s.R;
+import com.osg.loki.m4s.SplashScreenActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -104,7 +107,35 @@ public class AlertView extends Fragment {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer,alertDataForms.newInstance(token)).addToBackStack(null).commit();
+                final String PREFS_NAME = "MyPrefsFile";
+                final String PREF_TOKEN = "token";
+                final String PREF_LANG = "lang";
+                final String DOESNT_EXIST = "-1";
+                final SharedPreferences prefs = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                if (prefs.getString(PREF_TOKEN,"-1").equals("testtoken")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setTitle(R.string.registeralert);
+                    builder.setMessage(R.string.registeralertmsg);
+                    builder.setPositiveButton(R.string.registeralertpos, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(getContext(),SplashScreenActivity.class);
+                            intent.putExtra("alert","true");
+                            getActivity().startActivity(intent);
+                            getActivity().finish();
+                        }
+                    });
+                    builder.setNegativeButton(R.string.registeralertneg, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    AlertDialog registerDialog = builder.create();
+                    registerDialog.show();
+                } else {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentContainer, alertDataForms.newInstance(token)).addToBackStack(null).commit();
+                }
             }
         });
 
@@ -113,14 +144,14 @@ public class AlertView extends Fragment {
 
     public void showGPSDiabledDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("GPS отключён!");
-        builder.setMessage("GPS отключён, чтобы использовать все возможности программы пожалуйста включите GPS устройство");
-        builder.setPositiveButton("Включить GPS", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.gps_warning_title);
+        builder.setMessage(R.string.gps_warning_message);
+        builder.setPositiveButton(R.string.gsp_enable_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                startActivityForResult(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS), GPS_ENABLE_REQUEST);
+                startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), GPS_ENABLE_REQUEST);
             }
-        }).setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+        }).setNegativeButton(R.string.gps_cancel_action_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

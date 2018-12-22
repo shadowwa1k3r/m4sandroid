@@ -63,12 +63,12 @@ public class SubItemPagePresenter extends PresenterBase<SubItemPageContract.View
         return  returnfullid;
     }
     @Override
-    public void loadItemList(int position){
+    public void loadItemList(int position,String lang,String cat){
         /*mItemList=baza.getItemList();
         mList=baza.getList();
         mAdapter=new SubItemPageAdapter(this);
         current=position;*/
-        mList = baza.getHelpList();
+        mList = baza.getHelpList(lang, cat);
         mAdapter = new SubItemPageAdapter(this);
         current = position;
 

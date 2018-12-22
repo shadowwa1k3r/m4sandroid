@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.osg.loki.m4s.View.NewSettings">
+
+    <RelativeLayout
+        android:id="@+id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#03A9F4"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="5dp"
+        android:paddingStart="16dp">
+
+
+
+        <TextView
+            android:id="@+id/TitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:text="@string/settings"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+
+            android:textStyle="bold"/>
+
+
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_below="@id/Head"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/ru"
+            android:layout_margin="5dp"
+            android:text="@string/ruslang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/uzb"
+            android:layout_margin="5dp"
+            android:text="@string/uzblang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+   
+        <Button
+            android:textColor="@android:color/white"
+            android:id="@+id/change"
+            android:layout_margin="5dp"
+            android:background="#2196F3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_locale"/>
+
+    </LinearLayout>
+</RelativeLayout>

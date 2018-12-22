@@ -98,11 +98,18 @@ public class SubItemFullInfo extends Fragment implements FullInfoPageContract.Vi
     @Override
     public void setContent(String content,String img) {
         this.title.setText(head);
-        if (img!=null) hide.expand();
+        if (img!=null) {
+            if (img.equals("")){
+
+            }else {
+                hide.expand();
+                Picasso.get().load(img).fit().into(this.img);
+            }
+        }
 //        this.img.setImageResource(R.drawable.chemcrash);
         Log.e("img", "setContent: "+img );
 //        Glide.with(getContext()).load(img).apply(new RequestOptions().centerCrop()).into(this.img);
-        Picasso.get().load(img).fit().into(this.img);
+
 
 
         this.content.loadDataWithBaseURL(null,content,"text/html","utf-8",null);

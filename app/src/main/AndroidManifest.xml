@@ -31,6 +31,10 @@
         </activity>
         <activity android:name=".View.RecoveryStep">
         </activity>
+        <activity android:name=".View.LanguageSettingsActivity">
+        </activity>
+        <activity android:name=".View.LanguagePickerActivity">
+        </activity>
     </application>
 
 </manifest>

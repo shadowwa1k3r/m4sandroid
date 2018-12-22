@@ -36,6 +36,7 @@
 
         <ImageButton
             android:id="@+id/settings"
+            android:visibility="gone"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"
@@ -72,7 +73,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@android:color/holo_red_dark"
                 android:layoutDirection="ltr"
-                android:text="Отправить местонахождения"
+                android:text="@string/send_loc_button"
                 android:textColor="#ffffff"/>
 
             <Button
@@ -83,7 +84,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="5dp"
                 android:background="@android:color/holo_red_dark"
-                android:text="Звонить в 1050"
+                android:text="@string/call_button"
                 android:textColor="#ffffff"/>
 
             <TextView
@@ -93,7 +94,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:text="Нужно помощь?"
+                android:text="@string/alert_view_title"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="16sp"/>

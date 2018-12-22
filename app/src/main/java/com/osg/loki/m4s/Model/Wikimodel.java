@@ -7,19 +7,37 @@ import io.realm.RealmObject;
  */
 
 public class Wikimodel extends RealmObject {
-    private String title, content,last_modified,image;
+    private String title, content,last_modified,image,lang,cat;
     private int id;
 
 
     public Wikimodel() {
     }
 
-    public Wikimodel(int id,String title, String content, String image, String last_modified) {
+    public Wikimodel(int id,String title, String content, String image, String last_modified,String lang,String cat) {
         this.content = content;
+        this.lang = lang;
         this.title=title;
         this.last_modified = last_modified;
         this.image = image;
         this.id = id;
+        this.cat = cat;
+    }
+
+    public String getCat() {
+        return cat;
+    }
+
+    public void setCat(String cat) {
+        this.cat = cat;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     public String getTitle() {

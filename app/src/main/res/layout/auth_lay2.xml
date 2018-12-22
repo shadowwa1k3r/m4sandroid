@@ -22,7 +22,7 @@
 
             android:layout_marginBottom="50dp"
             android:background="@drawable/signupbtn2"
-            android:text="Войти"
+            android:text="@string/enter_button"
             android:textColor="@android:color/white"/>
 
         <EditText
@@ -37,7 +37,7 @@
             android:drawableTint="#616161"
             android:ems="10"
             android:enabled="false"
-            android:hint="Код потдверждение"
+            android:hint="@string/confirm_code_hint"
             android:inputType="number"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"/>
@@ -53,7 +53,7 @@
             android:drawableStart="@drawable/ic_smartphone"
             android:drawableTint="#616161"
             android:ems="10"
-            android:hint="Номер телефона"
+            android:hint="@string/phone_hint"
             android:inputType="phone"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"/>
@@ -69,7 +69,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawableTint="#616161"
             android:ems="10"
-            android:hint="Новый пароль"
+            android:hint="@string/new_pwd_hint"
             android:inputType="textPassword"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"/>
@@ -85,7 +85,7 @@
             android:drawableStart="@drawable/ic_user2"
             android:drawableTint="#616161"
             android:ems="10"
-            android:hint="Имя"
+            android:hint="@string/auth_name_hint"
             android:inputType="textPersonName"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:text="Создать профиль"
+            android:text="@string/reg_title"
             android:textColor="@android:color/white"
             android:textSize="16sp"/>
     </RelativeLayout>

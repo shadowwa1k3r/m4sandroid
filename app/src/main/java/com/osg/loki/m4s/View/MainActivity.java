@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -20,10 +19,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.instabug.library.Instabug;
 import com.instabug.library.invocation.InstabugInvocationEvent;
 import com.osg.loki.m4s.Contracts.MainPageContract;
 import com.osg.loki.m4s.Dagger.App;
+import com.osg.loki.m4s.DataBase.NewTest;
 import com.osg.loki.m4s.MainPageItemAdapter;
 import com.osg.loki.m4s.Model.MainPageModel;
 import com.osg.loki.m4s.Model.Wikimodel;
@@ -46,7 +47,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements MainPageContract.View{
+public class MainActivity extends LocalizationActivity implements MainPageContract.View{
 
     private String token;
     private int current;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
     ImageView logo;
     private MainPageModel baza;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
      //   AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.material_main);
@@ -79,27 +80,30 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
         ButterKnife.bind(this);
 
         new Instabug.Builder(getApplication(), "835620b5a1bdefd7a2ff0c889c570b52")
-                .setInvocationEvents(InstabugInvocationEvent.FLOATING_BUTTON, InstabugInvocationEvent.SCREENSHOT)
+                .setInvocationEvents(InstabugInvocationEvent.NONE)
                 .build();
 
 
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-
+        Log.e("lang", "onCreate: "+getCurrentLanguage().getLanguage() );
 
         Retrofit retrofit = new Retrofit.Builder()
-                //.baseUrl("http://192.168.1.102:8000/")
+//                .baseUrl("http://192.168.1.112:8888/")
                 .baseUrl("https://app.fvv.uz/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        final Urls service = retrofit.create(Urls.class); final String PREFS_NAME = "MyPrefsFile";
+        final Urls service = retrofit.create(Urls.class);
+        final String PREFS_NAME = "MyPrefsFile";
         final String PREF_TOKEN = "token";
+        final String PREF_LANG = "lang";
         final String DOESNT_EXIST = "-1";
         final SharedPreferences prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-
+        prefs.edit().putString(PREF_LANG,getCurrentLanguage().getLanguage()).apply();
 
         final Call<List<Wikimodel>> sync = service.syncwiki(prefs.getString(PREF_TOKEN,DOESNT_EXIST),1);
+        final Call<List<NewTest>> syncTest = service.getTestList();
         sync.enqueue(new Callback<List<Wikimodel>>() {
             @Override
             public void onResponse(Call<List<Wikimodel>> call, Response<List<Wikimodel>> response) {
@@ -108,13 +112,13 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
                     Log.d("sync", "onResponse: "+response.body().size());
                     baza = new MainPageModel(Realm.getDefaultInstance());
                     baza.setHelpList(response.body());
-                    Toast.makeText(getApplicationContext(),"Обновление базы данных справочника успешно выполнено",Toast.LENGTH_LONG).show();
-                    Log.e("checkupdateddb", "onClick: " + baza.getHelpList().get(0).getContent() + " size=" + baza.getHelpList().size());
+                    Toast.makeText(getApplicationContext(),R.string.db_updated,Toast.LENGTH_LONG).show();
+//                    if (baza.getHelpList("uz").size()>0)Log.e("checkupdateddb", "onClick: " + baza.getHelpList("uz").get(0).getContent() + " size=" + baza.getHelpList("uz").size());
                 }
                 else if (response.code()==304){
-                    Toast.makeText(getApplicationContext(),"Обновление не требуется",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),R.string.update_not_required,Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(),"Ошибка сервера при обновлении базы данных справочника",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),R.string.server_error_update,Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -122,7 +126,23 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
             @Override
             public void onFailure(Call<List<Wikimodel>> call, Throwable t) {
                 Log.d("sync", "onResponse: "+t.getMessage());
-                Toast.makeText(getApplicationContext(),"Ошибка сети при обновлении базы данных справочника",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),R.string.server_error_update,Toast.LENGTH_LONG).show();
+            }
+        });
+        syncTest.enqueue(new Callback<List<NewTest>>() {
+            @Override
+            public void onResponse(Call<List<NewTest>> call, Response<List<NewTest>> response) {
+                Log.d("test", "onResponse: "+response.body().size());
+                baza = new MainPageModel(Realm.getDefaultInstance());
+                baza.updateTestList(response.body());
+                for (int i = 0; i <response.body().size() ; i++) {
+                    Log.d("test", "onResponse: "+response.body().get(i).getQuestion());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<NewTest>> call, Throwable t) {
+                Log.e("wiki", "onFailure: "+t.getMessage() );
             }
         });
 
@@ -199,17 +219,20 @@ public class MainActivity extends AppCompatActivity implements MainPageContract.
         Fragment fragment = null;
         switch (value) {
             case "item1":  try {
-                fragment = SubItemPageView.newInstance(0);
-                ImageViewAnimatedChange(getApplication(),logo, R.drawable.ic_phone_call);
+                fragment = new CategoryMenu();
+//                fragment = SubItemPageView.newInstance(0);
+//                ImageViewAnimatedChange(getApplication(),logo, R.drawable.ic_phone_call);
             }
             catch (Exception e){
                 Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
             }
                 break;
-            case "item2": fragment = new LicenseRequest();break;
+            case "item2": fragment = SubItemPageView.newInstance(2);
+//                fragment = new LicenseRequest();
+                break;
             case "item3": fragment= AlertView.newInstance(token);/*ImageViewAnimatedChange(getApplication(),logo, R.drawable.logo);*/break;
 //            case "item4": fragment= SubItemPageView.newInstance(4);break;
-            case "item4": fragment = new LicenseRequest();break;
+            case "item4": fragment = new NewTestView();break;
             case "item5": fragment= new NewSettings();break;
         }
 

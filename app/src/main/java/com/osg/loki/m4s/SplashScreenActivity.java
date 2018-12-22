@@ -4,16 +4,16 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 
+import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.osg.loki.m4s.DataBase.ItemFullInfo;
 import com.osg.loki.m4s.DataBase.MenuItem2List;
 import com.osg.loki.m4s.Model.MainPageItemType;
 import com.osg.loki.m4s.Tools.MySharedPreference;
 import com.osg.loki.m4s.Tools.State;
+import com.osg.loki.m4s.View.LanguagePickerActivity;
 import com.osg.loki.m4s.View.auth1;
-import com.osg.loki.m4s.View.intro1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends LocalizationActivity {
 
     private AtomicLong itemListPrimeryKey;
     private MySharedPreference oneTime = new MySharedPreference();
@@ -49,7 +49,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             "<h1 style=\"background-color:rgba(255, 99, 71, 0.5);\">...</h1>\n" +
             "<h1 style=\"background-color:hsla(9, 100%, 64%, 0.5);\">...</h1> \n<a href=\"https://www.w3schools.com/html/\">Visit our HTML tutorial</a> ";
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         ButterKnife.bind(this);
@@ -159,7 +159,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         } else if (savedVersionCode == DOESNT_EXIST) {
 
             // TODO This is a new install (or the user cleared the shared preferences)
-            getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(R.id.container,new intro1()).commit();
+//            getSupportFragmentManager().beginTransaction().setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).replace(R.id.container,new auth1()).commit();
+            startActivity(new Intent(this,LanguagePickerActivity.class));
 
         } else if (currentVersionCode > savedVersionCode) {
 
@@ -186,6 +187,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     .build();*/
             RealmConfiguration config = new RealmConfiguration.Builder()
                     .name("newdb.realm")
+                    .deleteRealmIfMigrationNeeded()
                     .build();
             Realm.setDefaultConfiguration(config);
         }

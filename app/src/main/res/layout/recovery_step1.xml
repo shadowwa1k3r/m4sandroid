@@ -44,7 +44,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="5"
                 android:gravity="center_horizontal"
-                android:text="Повторно отправит код"
+                android:text="@string/resend_code"
                 android:visibility="invisible"/>
         </LinearLayout>
 
@@ -57,7 +57,7 @@
 
             android:layout_marginBottom="50dp"
             android:background="@drawable/signupbtn2"
-            android:text="подтвердить"
+            android:text="@string/confirm_temp_code"
             android:textColor="@android:color/white"/>
 
         <EditText
@@ -75,7 +75,7 @@
             android:inputType="number"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"
-            android:hint="Код подтверждение"
+            android:hint="@string/confirm_code_hint_rec"
             android:visibility="invisible"/>
 
         <EditText
@@ -89,7 +89,7 @@
             android:drawableStart="@drawable/ic_smartphone"
             android:drawableTint="#616161"
             android:ems="10"
-            android:hint="Номер телефона"
+            android:hint="@string/rec_phone_number"
             android:inputType="phone"
             android:paddingEnd="10dp"
             android:paddingStart="10dp"/>
@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:text="Восстановить пароль"
+            android:text="@string/recover_password"
             android:textColor="@android:color/white"
             android:textSize="16sp"/>
     </RelativeLayout>

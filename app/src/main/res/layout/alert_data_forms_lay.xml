@@ -69,7 +69,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:background="@drawable/signupbtn2"
-            android:text="Потдвердить"
+            android:text="@string/map_button_confirm"
             android:textColor="@android:color/white"
             android:visibility="invisible"/>
 
@@ -105,7 +105,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="24dp"
-                    android:text="Чрезвычайный случай"
+                    android:text="@string/message_title"
                     android:textColor="#424242"
                     android:textSize="18sp"/>
 
@@ -130,7 +130,7 @@
                         android:layout_centerHorizontal="true"
                         android:background="@drawable/textback"
                         android:ems="10"
-                        android:hint="ФИО"
+                        android:hint="@string/name_hint"
                         android:inputType="textPersonName"
                         android:lines="1"
                         android:maxLines="1"
@@ -147,7 +147,7 @@
                         android:background="@drawable/textback"
 
                         android:ems="10"
-                        android:hint="Заголовок"
+                        android:hint="@string/title_hint"
                         android:inputType="textPersonName"
                         android:lines="1"
                         android:maxLines="1"
@@ -189,7 +189,7 @@
                             android:drawableStart="@drawable/ic_map_loc"
                             android:paddingEnd="5dp"
                             android:paddingStart="15dp"
-                            android:text="Выбрать на карте"
+                            android:text="@string/pick_on_map"
                             android:textColor="@android:color/white"
                             android:textSize="10sp"/>
                     </LinearLayout>
@@ -226,7 +226,7 @@
                         android:background="@drawable/textback"
                         android:ems="10"
                         android:gravity="top"
-                        android:hint="Допольнительная информация"
+                        android:hint="@string/extra_info"
                         android:inputType="textMultiLine"
                         android:maxLines="3"
                         android:minLines="5"
@@ -248,7 +248,7 @@
                     android:drawableStart="@drawable/ic_add"
                     android:paddingEnd="5dp"
                     android:paddingStart="15dp"
-                    android:text="Добавить медиафайлы"
+                    android:text="@string/add_media"
                     android:textColor="@android:color/white"
                     android:textSize="10sp"/>
                 <android.support.v7.widget.RecyclerView
@@ -273,7 +273,7 @@
                     android:drawableStart="@drawable/ic_mail"
                     android:paddingEnd="5dp"
                     android:paddingStart="15dp"
-                    android:text="отправить"
+                    android:text="@string/send_button"
                     android:textColor="@android:color/white"/>
             </RelativeLayout>
         </ScrollView>

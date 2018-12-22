@@ -101,13 +101,13 @@ public class RecoveryStep extends AppCompatActivity {
                                 phone.setEnabled(false);
                                 phone.setInputType(InputType.TYPE_NULL);*/
                             } else {
-                                Toast.makeText(getApplicationContext(),"Ошибка сервера"+response.code(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),getString(R.string.server_error)+response.code(),Toast.LENGTH_LONG).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),"Ошибка сервера"+t.getMessage(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),R.string.server_error+t.getMessage(),Toast.LENGTH_LONG).show();
                             Log.e("error", "onFailure: "+t.getMessage() );
                         }
                     });
@@ -122,22 +122,22 @@ public class RecoveryStep extends AppCompatActivity {
                                     getSupportFragmentManager().beginTransaction().replace(R.id.content_container,RecoveryStep2.newInstance(phone.getText().toString())).addToBackStack(null).commit();
                                 }
                                 else {
-                                    Toast.makeText(getApplicationContext(),"Ошибка сервера"+response.code(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(),R.string.server_error+response.code(),Toast.LENGTH_LONG).show();
                                 }
                             }
 
                             @Override
                             public void onFailure(Call call, Throwable t) {
-                                Toast.makeText(getApplicationContext(),"Ошибка сервера"+t.getMessage(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),R.string.server_error+t.getMessage(),Toast.LENGTH_LONG).show();
                             }
                         });
                     }else {
-                        Toast.makeText(getApplicationContext(),"Введите код подтверждение",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),R.string.confirm_code,Toast.LENGTH_LONG).show();
                     }
 
                 }
                 } else {
-                    Toast.makeText(getApplicationContext(),"Введите тел. номер",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),R.string.phone_number,Toast.LENGTH_LONG).show();
                 }
             }
         });

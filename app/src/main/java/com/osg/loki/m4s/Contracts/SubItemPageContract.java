@@ -17,6 +17,6 @@ public interface SubItemPageContract {
     }
     interface Presenter extends MvpPresenter<View>{
         String[] onItemSelected(int position);
-        void loadItemList(int position);
+        void loadItemList(int position,String lang,String cat);
     }
 }

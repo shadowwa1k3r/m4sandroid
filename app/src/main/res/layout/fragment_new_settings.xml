@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center_vertical"
-            android:text="НАСТРОЙКИ"
+            android:text="@string/settings"
             android:textColor="@android:color/white"
             android:textSize="14sp"
 
@@ -39,18 +39,27 @@
     android:orientation="vertical">
     <Button
         android:id="@+id/conf"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#2196F3"
         android:textColor="@android:color/white"
         android:layout_margin="5dp"
-        android:text="Основные настройки"/>
+        android:text="@string/main_settings"/>
 
     <Button
         android:id="@+id/upgrade"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
-        android:text="Обновить БД справочника"
+        android:text="@string/update_db_button"
+        android:layout_margin="5dp"
+        android:background="#2196F3"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/lang"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:text="@string/language_button"
         android:layout_margin="5dp"
         android:background="#2196F3"
         android:layout_height="wrap_content"/>
@@ -61,7 +70,7 @@
         android:background="#2196F3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Выйти"/>
+        android:text="@string/lagout_button"/>
 
 </LinearLayout>
 </RelativeLayout>

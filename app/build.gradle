@@ -62,8 +62,8 @@ dependencies {
     compile 'com.kbeanie:multipicker:1.5@aar'
 
     implementation 'com.squareup.picasso:picasso:2.71828'
-
-
+    implementation 'com.akexorcist:localizationactivity:1.2.2'
+    implementation 'info.hoang8f:fbutton:1.0.5'
     implementation 'com.instabug.library:instabug:8.0.6'
 
 

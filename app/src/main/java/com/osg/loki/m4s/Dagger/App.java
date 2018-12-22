@@ -29,6 +29,7 @@ public class App extends Application {
                 .mapPagePresenterModule(new MapPagePresenterModule())
                 .testPagePresenterModule(new TestPagePresenterModule())
                 .searchPresenterModule(new SearchPresenterModule())
+                .newTestPresenterModule(new NewTestPresenterModule())
                 .build();
     }
 }

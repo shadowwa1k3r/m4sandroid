@@ -90,18 +90,18 @@ public class RecoveryStep2 extends Fragment {
                                 startActivity(intent);
 //                                getActivity().finish();
                             } else {
-                                Toast.makeText(getContext(),"Ошибка сервера"+response.code(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),R.string.server_error+response.code(),Toast.LENGTH_LONG).show();
                             }
                         }
 
                         @Override
                         public void onFailure(Call call, Throwable t) {
-                            Toast.makeText(getContext(),"Ошибка сервера"+t.getMessage(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),R.string.server_error+t.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     });
                 } else
                 {
-                    Toast.makeText(getContext(),"Поля не заполнены",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),R.string.empty_fields     ,Toast.LENGTH_LONG).show();
                 }
             }
         });

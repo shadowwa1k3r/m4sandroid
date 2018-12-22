@@ -99,7 +99,7 @@ public class auth2 extends Fragment {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("https://app.fvv.uz/")
-                //.baseUrl("http://192.168.1.102:8000/")
+//                .baseUrl("http://192.168.1.112:8888/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = mRetrofit.create(Auth.class);
@@ -125,7 +125,7 @@ public class auth2 extends Fragment {
                                     getActivity().finish();
                                 }
                                 if (response.code() == 406) {
-                                    Toast.makeText(getContext(), "Пользователь с таким номером телефона уже существует!", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getContext(), R.string.auth_already_exist, Toast.LENGTH_LONG).show();
                                 } else {
                                     Log.e("confirm", "onResponse:  code " + response.code() + "response " + response.body());
                                 }
@@ -137,7 +137,7 @@ public class auth2 extends Fragment {
                             }
                         });
                     } else {
-                        Toast.makeText(getContext(),"Введите код потдверждение",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),R.string.enter_confirm_code,Toast.LENGTH_LONG).show();
                     }
                 } else {
                     if(!phone.getText().toString().equals("")&&!password.getText().toString().equals("")){
@@ -154,17 +154,17 @@ public class auth2 extends Fragment {
                                 phone.setEnabled(false);
                                 confirm_code.setEnabled(true);
                                 confirm_code.setVisibility(View.VISIBLE);
-                                Toast.makeText(getContext(),"Введите код потдверждение",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),R.string.enter_confirm_code,Toast.LENGTH_LONG).show();
                                 loading.setVisibility(View.GONE);
                                 shtor.setVisibility(View.GONE);
                             }
                             else if (response.code()==406){
-                                Toast.makeText(getContext(),"Пользователь с таким номером телефона уже существует!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),R.string.phone_exist,Toast.LENGTH_LONG).show();
                                 loading.setVisibility(View.GONE);
                                 shtor.setVisibility(View.GONE);
                             }
                             else {
-                                Toast.makeText(getContext(),"Ошибка при регистрации",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),R.string.error_reg,Toast.LENGTH_LONG).show();
                                 loading.setVisibility(View.GONE);
                                 shtor.setVisibility(View.GONE);
                             }
@@ -173,14 +173,14 @@ public class auth2 extends Fragment {
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
                             Log.e("signup", "onFailure: "+t.getMessage() );
-                            Toast.makeText(getContext(),"Ошибка сети",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),R.string.network_error,Toast.LENGTH_LONG).show();
                             loading.setVisibility(View.GONE);
                             shtor.setVisibility(View.GONE);
                         }
                     });
                 }
                 else {
-                        Toast.makeText(getContext(),"Введите номер телефона и пароль",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),R.string.auth_enter_phone_and_passord,Toast.LENGTH_LONG).show();
                     }
                 }
 

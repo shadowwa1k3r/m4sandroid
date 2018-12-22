@@ -58,7 +58,8 @@ public class auth1 extends Fragment {
     FrameLayout shtor;
     @BindView(R.id.loading)
     ProgressBar loading;
-
+    @BindView(R.id.q)
+    TextView skip;
     private Retrofit mRetrofit;
     private Auth service;
 
@@ -97,7 +98,8 @@ public class auth1 extends Fragment {
 
         final SharedPreferences prefs = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String pToken =prefs.getString(PREF_TOKEN,DOESNT_EXIST);
-        if (!pToken.equals(DOESNT_EXIST)){
+
+        if (!pToken.equals(DOESNT_EXIST)&&!pToken.equals("testtoken")){
             Intent main=new Intent(getActivity(),MainActivity.class);
             main.putExtra("token",pToken);
             shtor.setVisibility(View.GONE);
@@ -109,7 +111,7 @@ public class auth1 extends Fragment {
 
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("https://app.fvv.uz/")
-//                .baseUrl("http://192.168.1.107:8000/")
+//                .baseUrl("http://192.168.1.112:8888/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = mRetrofit.create(Auth.class);
@@ -120,6 +122,18 @@ public class auth1 extends Fragment {
                 Intent intent = new Intent(getActivity(),RecoveryStep.class);
                 startActivity(intent);
 //                getActivity().finish();
+            }
+        });
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent main=new Intent(getActivity(),MainActivity.class);
+                main.putExtra("token","testtoken");
+                prefs.edit().putString(PREF_TOKEN,"testtoken").apply();
+                shtor.setVisibility(View.GONE);
+                loading.setVisibility(View.GONE);
+                startActivity(main);
+                getActivity().finish();
             }
         });
         signin.setOnClickListener(new View.OnClickListener() {
@@ -152,7 +166,7 @@ public class auth1 extends Fragment {
                             shtor.setVisibility(View.GONE);
                             loading.setVisibility(View.GONE);
                             Log.i("token", "onResponse: "+response.message()+" "+response.code());
-                            Toast.makeText(getContext(),"Ошибка, неправильные данные!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),R.string.tost_incorrect_data,Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -161,12 +175,12 @@ public class auth1 extends Fragment {
                         Log.e("token", "onFailure: "+t.getMessage() );
                         shtor.setVisibility(View.GONE);
                         loading.setVisibility(View.GONE);
-                        Toast.makeText(getContext(),"Проблема при авторизации",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(),R.string.tost_auth_problem,Toast.LENGTH_LONG).show();
                     }
                 });
             }
             else {
-                    Toast.makeText(getContext(),"Введите номер телефона и пароль",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),R.string.auth_enter_phone_and_passord,Toast.LENGTH_LONG).show();
                 }
             }
 

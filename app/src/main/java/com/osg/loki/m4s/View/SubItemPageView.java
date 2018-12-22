@@ -1,6 +1,8 @@
 package com.osg.loki.m4s.View;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -43,7 +45,7 @@ public class SubItemPageView extends Fragment implements SubItemPageContract.Vie
     ImageView search;
     @BindView(R.id.TitleText)
     TextView mTextView;
-
+    private String cat;
 
     public SubItemPageView() {
         // Required empty public constructor
@@ -74,16 +76,28 @@ public class SubItemPageView extends Fragment implements SubItemPageContract.Vie
         ButterKnife.bind(this,SubItemPage);
 
         if (current==4){
-            mTextView.setText("Энциклопедия");
+            mTextView.setText(R.string.enciklopedia);
+            cat = "Энциклопедия";
         } else if (current==0){
-            mTextView.setText("Справочник");
+            mTextView.setText(R.string.chs);
+            cat = "ЧС: Как действовать?";
+        } else if (current==6) {
+            mTextView.setText(R.string.lb);
+            cat = "Личное безопасность";
+        }else if (current==2){
+            mTextView.setText(R.string.perviy_pomosh);
+            cat = "Первая помощь";
         }
         mLayoutManager = new LinearLayoutManager(getContext());
         list.setLayoutManager(mLayoutManager);
         list.setHasFixedSize(true);
         App.getComponent().inject(this);
         mPresenter.attachView(this);
-        mPresenter.loadItemList(current);
+        final String PREFS_NAME = "MyPrefsFile";
+        final String PREF_LANG = "lang";
+        final SharedPreferences prefs = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        System.out.println(prefs.getString(PREF_LANG,"-1"));
+        mPresenter.loadItemList(current,prefs.getString(PREF_LANG,"ru"),cat);
         mPresenter.viewIsReady();
 
 

@@ -29,4 +29,5 @@ public interface Auth {
     Call<Void> confirmPhone(@Query("phone")String phone,@Query("code")String confirm_code);
     @GET("/api/password-recover/")
     Call<Void> newPasswd(@Query("phone")String phone,@Query("password")String password);
+
 }

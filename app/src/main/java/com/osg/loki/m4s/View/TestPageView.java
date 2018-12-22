@@ -165,7 +165,7 @@ public class TestPageView extends Fragment implements TestPageContract.View{
                 else {
                     mPresenter.onAnswerSelected(aws);
                 }
-                if (next.getText()=="Следующий") {
+                if (next.getText()==getString(R.string.test_next_click)) {
 
 
                     mPresenter.nextQ();
@@ -179,6 +179,7 @@ public class TestPageView extends Fragment implements TestPageContract.View{
                         }
                     }*/
                     mPresenter.showResult();
+
 
                 }
             }
@@ -210,16 +211,17 @@ public class TestPageView extends Fragment implements TestPageContract.View{
     @Override
     public void setData(Test test,int cnt) {
         test_title.setText(test.getTest_name());
-        q_count.setText(cnt+" вопросов");
+        q_count.setText(cnt+getString(R.string.test_q_cnt));
         test_description.setText(test.getTest_description());
-        next.setText("Следующий");
+        next.setText(R.string.test_next_click);
 
     }
 
     @Override
     public void setQuestion(Test test,int cur,int cnt) {
-        q_current.setText(cur+" - вопрос");
+        q_current.setText(cur+getString(R.string.test_cur_q));
         q_all.setText(cnt+"");
+
         q_content.setText(test.getQ_content());
         a1.setText(test.getA1());
         a1.setChecked(false);
@@ -237,7 +239,7 @@ public class TestPageView extends Fragment implements TestPageContract.View{
 
     @Override
     public void testEnd() {
-        next.setText("Закончить");
+        next.setText(R.string.test_end);
     }
 
     @Override
@@ -245,11 +247,11 @@ public class TestPageView extends Fragment implements TestPageContract.View{
         test_begin.setVisibility(View.INVISIBLE);
         test_info.setVisibility(View.INVISIBLE);
         test_results.setVisibility(View.VISIBLE);
-        res_perc.setText("Ваш результать: "+String.valueOf(perc)+"%");
-        q_count_res.setText("Кол-во вопросов: "+String.valueOf(count));
+        res_perc.setText(getString(R.string.test_res)+String.valueOf(perc)+"%");
+        q_count_res.setText(getString(R.string.test_q_all)+String.valueOf(count));
 
-        q_correct.setText(String.valueOf(cor_count)+" правильно");
-        q_wrong.setText(String.valueOf(wrong_count)+" неправильно");
+        q_correct.setText(String.valueOf(cor_count)+getString(R.string.test_succes));
+        q_wrong.setText(String.valueOf(wrong_count)+getString(R.string.test_fail));
     }
 
 }

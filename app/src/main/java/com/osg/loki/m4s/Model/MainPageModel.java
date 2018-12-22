@@ -7,6 +7,7 @@ import com.osg.loki.m4s.DataBase.MenuItem2List;
 import com.osg.loki.m4s.DataBase.MenuItem4List;
 import com.osg.loki.m4s.DataBase.MenuItem5List;
 import com.osg.loki.m4s.DataBase.MenuItem6List;
+import com.osg.loki.m4s.DataBase.NewTest;
 import com.osg.loki.m4s.Tools.State;
 
 import java.util.ArrayList;
@@ -31,25 +32,35 @@ public class MainPageModel {
 
     }
 
-    public List<Wikimodel> getHelpList(){
+    public List<Wikimodel> getHelpList(String lang, String cat){
         List<Wikimodel> list = new ArrayList<>();
-        RealmResults<Wikimodel> itemlist = mRealm.where(Wikimodel.class).findAll();
+        if (lang.equals("en")){
+            lang="ru";
+        }
+        RealmResults<Wikimodel> itemlist = mRealm.where(Wikimodel.class).equalTo("lang",lang).equalTo("cat",cat).findAll();
 
         for (Wikimodel model:itemlist){
-            list.add(new Wikimodel(model.getId(),model.getTitle(),model.getContent(),model.getImage(),model.getLast_modified()));
+            list.add(new Wikimodel(model.getId(),model.getTitle(),model.getContent(),model.getImage(),model.getLast_modified(),model.getLang(),model.getCat()));
         }
-
+        System.out.println(list.size());
         return list;
     }
 
     public void setHelpList(List<Wikimodel> wikiList){
-
+        System.out.println(wikiList.size());
             mRealm.beginTransaction();
             mRealm.delete(Wikimodel.class);
             mRealm.copyToRealm(wikiList);
             mRealm.commitTransaction();
 
 
+    }
+
+    public void updateTestList(List<NewTest> testList){
+        mRealm.beginTransaction();
+        mRealm.delete(NewTest.class);
+        mRealm.copyToRealm(testList);
+        mRealm.commitTransaction();
     }
 
 
@@ -101,7 +112,7 @@ public class MainPageModel {
     public Wikimodel getWiki(int id){
         Wikimodel wiki ;
         RealmResults<Wikimodel> itemlist = mRealm.where(Wikimodel.class).equalTo("id",id).findAll();
-        wiki = new Wikimodel(itemlist.get(0).getId(),itemlist.get(0).getTitle(),itemlist.get(0).getContent(),itemlist.get(0).getImage(),itemlist.get(0).getLast_modified());
+        wiki = new Wikimodel(itemlist.get(0).getId(),itemlist.get(0).getTitle(),itemlist.get(0).getContent(),itemlist.get(0).getImage(),itemlist.get(0).getLast_modified(),itemlist.get(0).getLang(),itemlist.get(0).getCat());
 
         return wiki;
 
@@ -123,6 +134,18 @@ public class MainPageModel {
 
         return tests;
     }*/
+    public ArrayList<NewTest> getTestList(String lang){
+        ArrayList<NewTest> testList = new ArrayList<>();
+        if (lang.equals("en")){
+            lang="ru";
+        }
+        RealmResults<NewTest> results = mRealm.where(NewTest.class).equalTo("lang",lang).findAll();
+        for (NewTest test:results
+             ) {
+            testList.add(new NewTest(test.getQuestion(),test.getAnswer1(),test.getAnswer2(),test.getAnswer3(),test.getAnswer4(),test.getAnswer(),test.getLang(),test.getId()));
+        }
+        return testList;
+    }
 
     public ArrayList<ResultDataModel> getResult(String text){
         ArrayList<ResultDataModel> result=new ArrayList<>();
