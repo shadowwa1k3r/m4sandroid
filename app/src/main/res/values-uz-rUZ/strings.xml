@@ -27,7 +27,7 @@
     <string name="auth_enter_phone_and_passord">Telefon raqami va parolni kiriting</string>
     <string name="auth_title">O\'zbekiston Respublikasi Favqulodda Vaziyatlar Vazirligi</string>
     <string name="register_button">Ro\'yxatdan o\'tish</string>
-    <string name="auth_phone">Telefon Raqami</string>
+    <string name="auth_phone">Telefon raqamini ko\'rsating</string>
     <string name="auth_pwd">Parol</string>
     <string name="auth_pwd_forgot">Parolni unutdingizmi?</string>
     <string name="auth_make">Kirish</string>
@@ -37,7 +37,7 @@
     <string name="network_error">Tarmoqda xatolik</string>
     <string name="enter_button">Kirish</string>
     <string name="confirm_code_hint">Tasdiqlash kodi</string>
-    <string name="phone_hint">Telefon Raqami</string>
+    <string name="phone_hint">Telefon raqamini ko\'rsating</string>
     <string name="new_pwd_hint">Yangi parol</string>
     <string name="auth_name_hint">Ism</string>
     <string name="reg_title">Ro\'yxatdan o\'tish</string>
@@ -62,7 +62,7 @@
     <string name="resend_code">Kodni qaytadan jo\'natish</string>
     <string name="confirm_temp_code">tasdiqlash</string>
     <string name="confirm_code_hint_rec">Tasdiqlash kodi</string>
-    <string name="rec_phone_number">Telefon raqami</string>
+    <string name="rec_phone_number">Telefon raqamini ko\'rsating</string>
     <string name="recover_password">Parolni qayta tiklash</string>
     <string name="empty_fields">To\'ldirilmagan</string>
     <string name="repeat_pwd">Parolni qaytaring</string>
@@ -83,12 +83,12 @@
     <string name="spravochnik">Ma\'lumotnoma</string>
     <string name="perviy_pomosh">Birinchi yordam</string>
     <string name="pick_lang_dialog">Tilni tanlang</string>
-    <string name="ruslang">Ruscha</string>
+    <string name="ruslang">Русский</string>
     <string name="uzblang">O\'zbekcha</string>
     <string name="confirm_locale">Tasdiqlash</string>
     <string name="register">Registratsiyasiz kirish</string>
     <string name="pick_language">Tilni tanlang</string>
-    <string name="pickru">Ruscha</string>
+    <string name="pickru">Русский</string>
     <string name="pickuz">O\'zbekcha</string>
     <string name="chs">Favqulodda vaziyatmi?</string>
     <string name="lb">Shaxsiy xavfsizlik</string>

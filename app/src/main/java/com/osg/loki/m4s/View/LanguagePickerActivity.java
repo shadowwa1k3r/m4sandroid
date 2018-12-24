@@ -4,16 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.akexorcist.localizationactivity.ui.LocalizationActivity;
 import com.osg.loki.m4s.R;
 import com.osg.loki.m4s.SplashScreenActivity;
 
-import info.hoang8f.widget.FButton;
-
 public class LanguagePickerActivity extends LocalizationActivity implements View.OnClickListener {
-    private FButton ru;
-    private FButton uz;
+    private Button ru;
+    private Button uz;
     private Context mContext;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,5 +42,6 @@ public class LanguagePickerActivity extends LocalizationActivity implements View
                 break;
         }
         startActivity(new Intent(this,SplashScreenActivity.class));
+        finish();
     }
 }

@@ -23,14 +23,14 @@
     <string name="gps_cancel_action_button">Отмена</string>
     <string name="send_loc_button">Отправить местонахождения</string>
     <string name="call_button">Звонить в 1050</string>
-    <string name="alert_view_title">Нужно помощь?</string>
+    <string name="alert_view_title">Нужна помощь?</string>
     <string name="tost_incorrect_data">Ошибка, неправильные данные!</string>
     <string name="tost_auth_problem">Проблема при авторизации</string>
     <string name="auth_enter_phone_and_passord">Введите номер телефона и пароль</string>
     <string name="auth_title">Министерство по чрезвычайным ситуациям Республики Узбекистан</string>
     <string name="register">Пропустить</string>
     <string name="register_button">Регистрация</string>
-    <string name="auth_phone">Номер телефона</string>
+    <string name="auth_phone">Введите номер телефона</string>
     <string name="auth_pwd">Пароль</string>
     <string name="auth_pwd_forgot">Забыли пароль?</string>
     <string name="auth_make">Войти</string>
@@ -40,7 +40,7 @@
     <string name="network_error">Ошибка сети</string>
     <string name="enter_button">Войти</string>
     <string name="confirm_code_hint">Код потдверждение</string>
-    <string name="phone_hint">Номер телефона</string>
+    <string name="phone_hint">Введите номер телефона</string>
     <string name="new_pwd_hint">Новый пароль</string>
     <string name="auth_name_hint">Имя</string>
     <string name="reg_title">Создать профиль</string>
@@ -65,7 +65,7 @@
     <string name="resend_code">Повторно отправит код</string>
     <string name="confirm_temp_code">подтвердить</string>
     <string name="confirm_code_hint_rec">Код подтверждение</string>
-    <string name="rec_phone_number">Номер телефона</string>
+    <string name="rec_phone_number">Введите номер телефона</string>
     <string name="recover_password">Восстановить пароль</string>
     <string name="empty_fields">Поля не заполнены</string>
     <string name="repeat_pwd">Повторите пароль</string>
@@ -87,15 +87,15 @@
     <string name="perviy_pomosh">Первая помощь</string>
     <string name="pick_lang_dialog">Выберите язык</string>
     <string name="ruslang">Русский</string>
-    <string name="uzblang">Узбекский</string>
+    <string name="uzblang">O\'zbekcha</string>
     <string name="confirm_locale">Применить</string>
     <string name="pick_language">Выберите язык</string>
     <string name="pickru">Русский</string>
-    <string name="pickuz">Узбекский</string>
     <string name="chs">ЧС: Как действовать?</string>
     <string name="lb">Личное безопасность</string>
     <string name="registeralert">Регистрация</string>
-    <string name="registeralertmsg">Чтобы воползоваться этим сервисом вам нужно пройти регистрацию.</string>
+    <string name="registeralertmsg">Чтобы воcпользоваться этим сервисом вам нужно пройти регистрацию.</string>
     <string name="registeralertpos">Зарегистрироватся</string>
     <string name="registeralertneg">Отмена</string>
+    <string name="pickuz">O\'zbekcha</string>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:background="@drawable/loginback"
                 android:layout_height="match_parent">
@@ -83,32 +84,52 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         >
-
-        <EditText
-            android:id="@+id/phone"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#E0E0E0"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_phone_receiver"
-            android:ems="10"
-            android:hint="@string/auth_phone"
-            android:inputType="phone"
-            android:textColorHint="@android:color/darker_gray"
-            android:textSize="14sp"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/phoneico"
+                android:src="@drawable/ic_phone_contact"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        <EditText
-            android:id="@+id/pwd"
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/phoneico"
+                android:backgroundTint="#E0E0E0"
+                android:ems="10"
+                android:hint="@string/auth_phone"
+                android:inputType="phone"
+                android:textColorHint="#212121"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#E0E0E0"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_lock2"
-            android:ems="10"
-            android:hint="@string/auth_pwd"
-            android:inputType="textPassword"
-            android:textColorHint="@android:color/darker_gray"
-            android:textSize="14sp"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/pwdico"
+                android:src="@drawable/ic_key"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#E0E0E0"
+                android:layout_toEndOf="@id/pwdico"
+                android:ems="10"
+                android:hint="@string/auth_pwd"
+                android:inputType="textPassword"
+                android:textColorHint="#212121"
+                android:textSize="14sp"/>
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/forgot"

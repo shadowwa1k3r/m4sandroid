@@ -5,13 +5,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#283593"
+    android:background="@android:color/white"
     >
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/loginback">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="false"
+            app:srcCompat="@drawable/logo"/>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="false"
+            android:layout_below="@+id/logo"
+            android:layout_centerHorizontal="true"
+            android:text="@string/auth_title"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="13sp"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/picklanguage"
         android:text="@string/pick_language"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/picklay"
@@ -25,30 +54,29 @@
         android:layout_margin="10dp"
         app:cardCornerRadius="5dp">
         <RelativeLayout
-            android:padding="20dp"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <info.hoang8f.widget.FButton
+            <Button
                 android:id="@+id/russian"
-                app:shadowHeight="2dp"
-                app:buttonColor="#283593"
                 android:text="@string/pickru"
-                android:textColor="@android:color/white"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
-            <info.hoang8f.widget.FButton
-                android:text="@string/pickuz"
-                android:textColor="@android:color/white"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+
+                android:background="@drawable/signupbtn2"
+                android:textColor="#ffffff"/>
+            <Button
                 android:id="@+id/uzbek"
-                app:buttonColor="#283593"
-                app:shadowHeight="2dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_alignParentBottom="true"
+                android:text="@string/pickuz"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/signupbtn2"
+                android:layout_alignParentBottom="true"
+                android:textColor="#ffffff"/>
+
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
